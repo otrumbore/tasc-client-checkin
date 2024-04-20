@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import NameForm from '@/components/checkinPages/NameForm';
 import Welcome from '@/components/checkinPages/Welcome';
 import { ClientInfo } from '@/app/types';
+import DOBForm from '@/components/checkinPages/DOBForm';
 
 export default function Home() {
 	const [step, setStep] = useState<number>(1);
@@ -19,6 +20,15 @@ export default function Home() {
 			case 2:
 				return (
 					<NameForm
+						nextStep={nextStep}
+						prevStep={prevStep}
+						clientInfo={clientInfo}
+						setClientInfo={setClientInfo}
+					/>
+				);
+			case 3:
+				return (
+					<DOBForm
 						nextStep={nextStep}
 						prevStep={prevStep}
 						clientInfo={clientInfo}

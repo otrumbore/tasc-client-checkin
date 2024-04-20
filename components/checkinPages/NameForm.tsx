@@ -29,7 +29,7 @@ const NameForm: React.FC<NameFormProps> = ({
 		event.preventDefault();
 		setClientInfo({ ...clientInfo, firstname: firstName, lastname: lastName });
 		console.log(clientInfo);
-		//nextStep();
+		nextStep();
 	};
 
 	return (
