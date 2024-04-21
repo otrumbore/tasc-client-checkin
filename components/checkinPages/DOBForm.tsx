@@ -29,6 +29,21 @@ const DOBForm: React.FC<DOBFormProps> = ({
 	const months = Array.from({ length: 12 }, (_, index) =>
 		(index + 1).toString()
 	);
+	const [displayMonths, setDisplayMonths] = useState<Array<string>>([
+		'1 - January',
+		'2 - February',
+		'3 - March',
+		'4 - April',
+		'5 - May',
+		'6 - June',
+		'7 - July',
+		'8 - August',
+		'9 - September',
+		'10 - October',
+		'11 - November',
+		'12 - December',
+	]);
+
 	const days = Array.from({ length: 31 }, (_, index) => (index + 1).toString());
 	const getCurrentYear = () => {
 		const currentDate = new Date();
@@ -66,10 +81,10 @@ const DOBForm: React.FC<DOBFormProps> = ({
 							: 'Por favor introduce tu primer nombre y apellido'}
 					</h3>
 					<form
-						className='flex flex-col p-4 w-full lg:w-10/12 gap-8'
+						className='flex flex-col p-4 w-full lg:w-10/12 gap-12'
 						onSubmit={handleSubmit}
 					>
-						<div className='flex w-full gap-4 border-2'>
+						<div className='flex w-full gap-4 justify-between'>
 							<div className='flex flex-col gap-2'>
 								<Label htmlFor='dob'>
 									{clientInfo.language === 'english'
@@ -77,13 +92,23 @@ const DOBForm: React.FC<DOBFormProps> = ({
 										: 'Nombre de pila:'}
 								</Label>
 								<Select>
-									<SelectTrigger className='w-[180px] text-xl'>
-										<SelectValue placeholder='Month' />
+									<SelectTrigger className='w-[12.5rem] h-[4rem] text-xl'>
+										<SelectValue
+											placeholder={
+												clientInfo.language === 'english'
+													? 'Month'
+													: 'Nombre de pila:'
+											}
+										/>
 									</SelectTrigger>
 									<SelectContent>
 										{months.map((month) => (
-											<SelectItem className='text-xl' key={month} value={month}>
-												{month}
+											<SelectItem
+												className='text-xl h-[4rem]'
+												key={month}
+												value={month}
+											>
+												{displayMonths[parseInt(month) - 1]}
 											</SelectItem>
 										))}
 									</SelectContent>
@@ -96,12 +121,22 @@ const DOBForm: React.FC<DOBFormProps> = ({
 										: 'Nombre de pila:'}
 								</Label>
 								<Select>
-									<SelectTrigger className='w-[180px] text-xl'>
-										<SelectValue placeholder='Day' />
+									<SelectTrigger className='w-[7.5rem] h-[4rem] text-xl'>
+										<SelectValue
+											placeholder={
+												clientInfo.language === 'english'
+													? 'Day'
+													: 'Nombre de pila:'
+											}
+										/>
 									</SelectTrigger>
 									<SelectContent>
 										{days.map((day) => (
-											<SelectItem className='text-xl' key={day} value={day}>
+											<SelectItem
+												className='text-xl h-[4rem]'
+												key={day}
+												value={day}
+											>
 												{day}
 											</SelectItem>
 										))}
@@ -115,12 +150,22 @@ const DOBForm: React.FC<DOBFormProps> = ({
 										: 'Nombre de pila:'}
 								</Label>
 								<Select>
-									<SelectTrigger className='w-[180px] text-xl'>
-										<SelectValue placeholder='Year' />
+									<SelectTrigger className='w-[11.25rem] h-[4rem] text-xl'>
+										<SelectValue
+											placeholder={
+												clientInfo.language === 'english'
+													? 'Year'
+													: 'Nombre de pila:'
+											}
+										/>
 									</SelectTrigger>
 									<SelectContent>
 										{years.map((year) => (
-											<SelectItem className='text-xl' key={year} value={year}>
+											<SelectItem
+												className='text-xl h-[4rem]'
+												key={year}
+												value={year}
+											>
 												{year}
 											</SelectItem>
 										))}
